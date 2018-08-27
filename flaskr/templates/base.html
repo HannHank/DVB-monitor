@@ -14,10 +14,11 @@
  
   
 </nav>
-<h7>{{linie}}</h7><br> 
-<h12>{{linie2}}</h12><br>
-<h13>{{linie3}}</h13><br>
-<h14>{{linie4}}</h14><br>
+<h7>{% for elem in linie %} {{elem}} {% endfor %}</h7><br> 
+<h8>{% for elem in linie2 %} {{elem}} {% endfor %}</h8><br>
+<h9>{% for elem in linie3 %} {{elem}} {% endfor %}</h9><br>
+<h10>{% for elem in linie4 %} {{elem}} {% endfor %}</h10><br>
+<meta http-equiv="refresh" content="5">  
 
 <section class="content">
   <header>

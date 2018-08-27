@@ -29,7 +29,7 @@ def create_app(test_config=None):
     # a simple page that says hello
     @app.route('/DVB')
     def hello(): 
-       url = "http://widgets.vvo-online.de/abfahrtsmonitor/Abfahrten.do?ort=Freital&hst=Burgker"
+       url = "http://widgets.vvo-online.de/abfahrtsmonitor/Abfahrten.do?ort=Dresden&hst=Rathausstraße"
 
        response = requests.get(url)
 
