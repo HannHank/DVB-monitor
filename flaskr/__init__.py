@@ -27,15 +27,15 @@ def create_app(test_config=None):
         pass
     
     # a simple page that says hello
-    @app.route('/DVB')
-    def hello(): 
-       url = "http://widgets.vvo-online.de/abfahrtsmonitor/Abfahrten.do?ort=Dresden&hst=Rathausstraße"
+    
+    @app.route('/DVB/<string:Place>/<string:Station>')
+    def hello(path): 
+       url = "http://widgets.vvo-online.de/abfahrtsmonitor/Abfahrten.do?ort={0}&hst={1}".format(Place,Station)
 
        response = requests.get(url)
 
        HTL = json.loads(response.content)
  
-       
 
        linie = HTL[0]
        linie2 = HTL[1]
