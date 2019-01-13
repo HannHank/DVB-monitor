@@ -4,7 +4,7 @@
 <nav>
   <h1>DVB Monitor</h1>
   
-  <ul>
+  <!-- <ul>
     {% if g.user %}
       <li><span>{{ g.user['username'] }}</span>
       <li><a href="{{ url_for('auth.logout') }}">Log Out</a>
@@ -12,7 +12,7 @@
    
     {% endif %}
   </ul>
- 
+  -->
   
 </nav>
 <h7>{% for elem in linie %} {{elem}} {% endfor %}</h7><br> 
@@ -20,6 +20,7 @@
 <h9>{% for elem in linie3 %} {{elem}} {% endfor %}</h9><br>
 <h10>{% for elem in linie4 %} {{elem}} {% endfor %}</h10><br>
 <meta http-equiv="refresh" content="5">  
+<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0"/>
 
 <section class="content">
   <header>
