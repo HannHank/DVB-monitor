@@ -3,6 +3,8 @@
 from flask import Flask, render_template
 import datetime
 import requests
+import requests
+from bs4 import BeautifulSoup
 import json
 app = Flask(__name__)
 @app.route("/DVB/<Ort>/<station>/")
@@ -16,9 +18,31 @@ def index(Ort,station):
        linie4 = HTL[3]
                                          
        return render_template('base.html',linie = linie,linie2 = linie2,linie3 = linie3,linie4 = linie4)
+@app.route("/Air")
+def Air():
+       form_data = {"ctl00$Inhalt$StationList":"114", "ctl00$Inhalt$BtnAnzeigen": "Anzeigen"}
+       url = "https://www.umwelt.sachsen.de/umwelt/infosysteme/luftonline/Uebersicht.aspx"
+       csrf_ids = ["__VIEWSTATEGENERATOR", "__EVENTVALIDATION", "__VIEWSTATE"]
 
+       client = requests.session()
+
+       form = client.get(url)
+       form_soup = BeautifulSoup(form.content, 'html.parser')
+       for csrf_id in csrf_ids:
+              value = form_soup.find("input", {"id": csrf_id }).get("value")
+              form_data[csrf_id] = value
+
+       table = client.post(url, data=form_data)
+       table_soup = BeautifulSoup(table.content, 'html.parser')
+       #print(table_soup.prettify())
+       data = table_soup.find_all('tr')[1].get_text()
+
+       print(data[21:])
+                                         
+       return render_template('base2.html',data = data)
 if __name__ == "__main__":
-   app.run(host='0.0.0.0', port=80, debug=True)
+   #app.run(host='localhost', port=80, debug=True)
+   app.run()
 # import os
 
 # from flask import Flask
